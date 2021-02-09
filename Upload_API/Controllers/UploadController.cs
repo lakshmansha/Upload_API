@@ -52,38 +52,11 @@ namespace Upload_API.Controllers
             try
             {
                 var content = Request.Form.Files[0];
-                var filePath = _configuration["UploadLocation"];
-                string fileuploadPath = Path.Combine(Directory.GetCurrentDirectory(), filePath);
+                var filePath = _configuration["UploadLocation"];                
 
                 if (content.Length > 0)
                 {
-                    if (!Directory.Exists(fileuploadPath))
-                    {
-                        Directory.CreateDirectory(filePath);
-                    }
-
-                    Upload upload = new Upload();
-                    upload.Guid = Guid.NewGuid().ToString();
-
-                    var fileName = ContentDispositionHeaderValue.Parse(content.ContentDisposition).FileName.Trim('"');
-                    upload.LocalFileName = GetFileName(fileName) + "_" + upload.Guid + "." + GetFileExtension(fileName);
-
-                    upload.FileName = fileName;
-
-                    var fullPath = Path.Combine(fileuploadPath, upload.LocalFileName);
-                    upload.FilePath = Path.Combine(filePath, upload.LocalFileName);
-                    using (var stream = new FileStream(fullPath, FileMode.Create))
-                    {
-                        content.CopyTo(stream);
-                        using (BinaryReader br = new BinaryReader(stream))
-                        {
-                            upload.FileBinary = br.ReadBytes((Int32)stream.Length);
-                        }
-                    }
-
-                    upload.FileSize = content.Length;
-
-                    bool IsSuccess = await _uploadService.PostUploadsAsync(upload);
+                    bool IsSuccess = await _uploadService.PostUploadsAsync(content, filePath);
 
                     if (!IsSuccess)
                         rtnVal = "Error";
@@ -105,26 +78,6 @@ namespace Upload_API.Controllers
             return string.IsNullOrEmpty(rtnVal) ?
                 StatusCode(StatusCodes.Status201Created, " Uploaded Successfully") :
                 StatusCode(StatusCodes.Status500InternalServerError, "Not-Upload Successfully");
-        }
-
-        #region Internal Utility
-
-        private string GetFileName(string SourceUrl)
-        {
-            string rtnVal = string.Empty;
-            string[] srcCnt = SourceUrl.Split('.');
-            rtnVal = srcCnt[0];
-            return rtnVal;
-        }
-
-        private string GetFileExtension(string UploadFileName)
-        {
-            string rtnVal = string.Empty;
-            string[] srcCnt = UploadFileName.Split('.');
-            rtnVal = srcCnt[srcCnt.Length - 1];
-            return rtnVal;
-        }
-
-        #endregion
+        }      
     }
 }
