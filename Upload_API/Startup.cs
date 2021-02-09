@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Upload_API.Models;
 using Microsoft.EntityFrameworkCore;
+using Upload_API.Services;
 
 namespace Upload_API
 {
@@ -31,6 +32,9 @@ namespace Upload_API
             services.AddDbContextPool<UploadDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Upload_DB")));
 
             services.AddControllers();
+
+            services.AddSingleton<IUploadService, UploadService>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Upload_API", Version = "v1" });
