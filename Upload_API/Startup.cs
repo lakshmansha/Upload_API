@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Upload_API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Upload_API
 {
@@ -26,6 +28,7 @@ namespace Upload_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContextPool<UploadDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Upload_DB")));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
