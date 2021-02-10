@@ -1,7 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <Authors>Lakshman.S</Authors>
+    <Product>Upload_API</Product>
+    <Description>Initial Version of API for Upload &amp; Fetch Files.</Description>
+    <Copyright />
+    <PackageReleaseNotes>Initial Version of API for Upload &amp; Fetch Files.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
