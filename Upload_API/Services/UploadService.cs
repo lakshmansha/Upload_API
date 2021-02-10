@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace Upload_API.Services
 
             try
             {
-                list = _context.Uploads.ToList();
+                list = _context.Uploads.FromSqlRaw("EXECUTE [dbo].[SP_FetchUploadFiles]").ToList();
             }
             catch (Exception ex)
             {
