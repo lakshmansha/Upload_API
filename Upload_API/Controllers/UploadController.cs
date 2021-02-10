@@ -33,7 +33,7 @@ namespace Upload_API.Controllers
         {
             IList<Upload> rtnVal = new List<Upload>();
             try
-            {                
+            {
                 rtnVal = _uploadService.GetUploads();
             }
             catch (Exception ex)
@@ -44,6 +44,7 @@ namespace Upload_API.Controllers
             return rtnVal;
         }
 
+        [HttpPost]
         public async Task<IActionResult> UploadAsync()
         {
             _logger.LogInformation("Enters: Upload");
@@ -52,7 +53,7 @@ namespace Upload_API.Controllers
             try
             {
                 var content = Request.Form.Files[0];
-                var filePath = _configuration["UploadLocation"];                
+                var filePath = _configuration["UploadLocation"];
 
                 if (content.Length > 0)
                 {
@@ -75,9 +76,7 @@ namespace Upload_API.Controllers
                 _logger.LogInformation("Exits: Upload");
             }
 
-            return string.IsNullOrEmpty(rtnVal) ?
-                StatusCode(StatusCodes.Status201Created, " Uploaded Successfully") :
-                StatusCode(StatusCodes.Status500InternalServerError, "Not-Upload Successfully");
-        }      
+            return Ok();
+        }
     }
 }

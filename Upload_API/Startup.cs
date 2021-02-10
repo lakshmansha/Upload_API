@@ -29,11 +29,13 @@ namespace Upload_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+
             services.AddDbContextPool<UploadDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Upload_DB")));
 
             services.AddControllers();
 
-            services.AddSingleton<IUploadService, UploadService>();
+            services.AddScoped<IUploadService, UploadService>();
 
             services.AddSwaggerGen(c =>
             {
@@ -47,13 +49,22 @@ namespace Upload_API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Upload_API v1"));
-            }
+            }            
+
+            app.UseCors(builder => builder
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .SetIsOriginAllowed((host) => true)
+              .AllowCredentials()
+            );
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Upload_API v1"));
+
 
             app.UseAuthorization();
 

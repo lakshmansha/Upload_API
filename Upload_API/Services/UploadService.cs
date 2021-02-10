@@ -29,7 +29,7 @@ namespace Upload_API.Services
 
             try
             {
-                list = _context.Uploads.FromSqlRaw("EXECUTE [dbo].[SP_FetchUploadFiles]").ToList();
+                list = _context.Uploads.ToList();
             }
             catch (Exception ex)
             {
