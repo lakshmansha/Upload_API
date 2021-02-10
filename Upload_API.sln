@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upload_API", "Upload_API\Upload_API.csproj", "{FFA3E388-5691-443D-AF12-E85BBA5F5478}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Upload_DB", "Upload_DB\Upload_DB.sqlproj", "{99BCEB37-4C71-4F89-901D-2A4301422A7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upload_API.Tests", "Upload_API.Tests\Upload_API.Tests.csproj", "{4A0C0C34-BF31-4B23-AEDA-928E9AE5B660}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,16 @@ Global
 		{FFA3E388-5691-443D-AF12-E85BBA5F5478}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFA3E388-5691-443D-AF12-E85BBA5F5478}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFA3E388-5691-443D-AF12-E85BBA5F5478}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99BCEB37-4C71-4F89-901D-2A4301422A7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99BCEB37-4C71-4F89-901D-2A4301422A7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99BCEB37-4C71-4F89-901D-2A4301422A7B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{99BCEB37-4C71-4F89-901D-2A4301422A7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99BCEB37-4C71-4F89-901D-2A4301422A7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99BCEB37-4C71-4F89-901D-2A4301422A7B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{4A0C0C34-BF31-4B23-AEDA-928E9AE5B660}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A0C0C34-BF31-4B23-AEDA-928E9AE5B660}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A0C0C34-BF31-4B23-AEDA-928E9AE5B660}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A0C0C34-BF31-4B23-AEDA-928E9AE5B660}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
